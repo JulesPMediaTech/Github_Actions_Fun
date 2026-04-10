@@ -1,0 +1,26 @@
+name: Step Types
+
+on:
+    workflow_dispatch:
+
+jobs:
+    inline-bash:
+        # This is an inlinne bash script (executed with 'run')
+        runs-on: ubuntu-24.04
+        steps:
+            - run: echo 'This is a bash echo script'
+
+    inline-python:
+        # This is an inline python script
+        runs-on: ubuntu-24.04
+        steps:
+            - run: print ("This is a python print statement")
+              shell: python
+
+    action-javascript-hello:
+        # This uses an actions file in Github Action Marketplace (executed with 'uses')
+            runs-on: ubuntu-24.04
+            steps:
+                - uses: actions/hello-world-javascript-action@79ac0da13ee392da3fdd151813d5ce4658cb7e27
+                  with:
+                    who-to-greet: "Jules - using an action from Github Action Marketplace"
