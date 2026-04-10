@@ -4,6 +4,7 @@ on:
     workflow_dispatch:
 
 jobs:
+    # Note that JOBS run in PARALLEL
     inline-bash:
         # This is an inlinne bash script (executed with 'run')
         runs-on: ubuntu-24.04
@@ -21,6 +22,7 @@ jobs:
         # This uses an actions file in Github Action Marketplace (executed with 'uses')
             runs-on: ubuntu-24.04
             steps:
+                # Note either a tag or commit hash is used after '@' to specify exact version.
                 - uses: actions/hello-world-javascript-action@79ac0da13ee392da3fdd151813d5ce4658cb7e27
                   with:
                     who-to-greet: "Jules - using an action from Github Action Marketplace"
