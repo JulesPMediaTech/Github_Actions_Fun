@@ -1,0 +1,33 @@
+name: Environment Variables
+on:
+    workflow_dispatch:
+env:
+  WORKFLOW_VAR: I_AM_A_WORKFLOW_VARIABLE
+
+jobs:
+  job-1:
+    runs-on: ubuntu-24.04
+    env:
+      JOB_VAR: I_AM_A_JOB_VARIABLE
+    steps:
+      - name: Print environment variables in job-1
+        env:
+          STEP_VAR: I_AM_A_STEP_VARIABLE
+        run: |
+          echo "WORKFLOW_VAR: $WORKFLOW_VAR"  #visible in entire workflow
+          echo "JOB_VAR: $JOB_VAR"            #visible in in all steps of this job
+          echo "STEP_VAR: $STEP_VAR"          #visible only in this step
+
+      - name: Inspect scopes job1 step 2
+        run: |
+          echo "WORKFLOW_VAR: $WORKFLOW_VAR"  #visible in entire workflow
+          echo "JOB_VAR: $JOB_VAR"            #visible in in all steps of this job
+          echo "STEP_VAR: $STEP_VAR"          #not visible here, will be empty
+  job-2:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Inspect scopes job2 step 2
+        run: |
+          echo "WORKFLOW_VAR: $WORKFLOW_VAR"  #visible in entire workflow
+          echo "JOB_VAR: $JOB_VAR"            #not visible here, will be empty
+          echo "STEP_VAR: $STEP_VAR"          #not visible here, will be empty
