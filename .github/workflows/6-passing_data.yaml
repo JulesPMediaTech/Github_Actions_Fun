@@ -4,7 +4,7 @@ on:
 
 jobs:
   producer:
-    runs-on: ununtu-24.04
+    runs-on: ubuntu-24.04
 
     outputs:
       foo: ${{ steps.generate-foo.outputs.foo }}
