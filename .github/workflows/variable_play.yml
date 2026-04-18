@@ -11,6 +11,7 @@ jobs:
         id: step1
         run: | 
           foo=barbarbar
+          echo "straight after declaration ${foo}"
           echo "foo=$(foo)" >> "$GITHUB_OUTPUT"
           
       - name: show variable from previ step
